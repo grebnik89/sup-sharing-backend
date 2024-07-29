@@ -1,7 +1,7 @@
 const dates = require("../models/dates");
 
 const findAllDates = async (req, res, next) => {
-    req.datesArray = await dates.find({}).populate({ path: "user", select: "-phone" });
+    req.datesArray = await dates.find({}, { _id: 0, user: 0 });
     next();
 };
 
