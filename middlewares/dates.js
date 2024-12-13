@@ -1,17 +1,17 @@
 const dates = require("../models/dates");
-//const normalizeToObject = require("../utils/normalize/normalize");
+const normalizeToObject = require("../utils/normalize");
 
 const findAllDates = async (req, res, next) => {
+    const dataArray = await dates.findAllDates(); //получаем все даты бронирований
+
     if (req.query["month.name"]) {
-        const dataArray = await dates.findDatesByMonth(req.query["month.name"]);
-        req.normalizedDataObject = dataArray;
+        req.dataArray = dataArray.filter((obj) => obj.month.name === req.query["month.name"]); // фильтруем по месяцам
         next();
         return;
     }
 
-    const dataArray = await dates.find({}, { _id: 0, user: 0 }).populate("month"); // тут тоже не хотят популэйтиться месяцы
-    req.normalizedDataObject = dataArray;
-    //req.normalizedDataObject = await normalizeToObject(dataArray);
+    // тут отдаем все даты, если нет запроса по месяцам
+    req.dataArray = dataArray;
     next();
 };
 

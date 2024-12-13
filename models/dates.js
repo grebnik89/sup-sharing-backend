@@ -22,11 +22,8 @@ const datesSchema = new mongoose.Schema({
     },
 });
 
-datesSchema.statics.findDatesByMonth = function (month) {
-    return this.find({}, { _id: 0 }).populate("month").populate("user"); // понять почему юзер популэйтится, а месяцы - нет
-    /* .then((dates) => {
-            return dates; //.filter((date) => date.month === month);
-        }); */
+datesSchema.statics.findAllDates = function () {
+    return this.find({}, { _id: 0 }).populate("month").populate("user"); // подключаем данные пользователей и месяцы
 };
 
 module.exports = mongoose.model("dates", datesSchema);
