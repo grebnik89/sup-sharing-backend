@@ -1,5 +1,6 @@
 const dates = require("../models/dates");
-const normalizeToObject = require("../utils/normalize");
+
+// позже добавить ручку, которая будет возвращать данные касающиеся только аренды, без данных клиентов
 
 const findAllDates = async (req, res, next) => {
     const dataArray = await dates.findAllDates(); //получаем все даты бронирований

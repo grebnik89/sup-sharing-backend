@@ -23,7 +23,7 @@ const datesSchema = new mongoose.Schema({
 });
 
 datesSchema.statics.findAllDates = function () {
-    return this.find({}, { _id: 0 }).populate("month").populate("user"); // подключаем данные пользователей и месяцы
+    return this.find({}, { _id: 0 }).populate("month", { _id: 0 }).populate("user", { _id: 0 }); // подключаем данные пользователей и месяцы, исключаем _id
 };
 
 module.exports = mongoose.model("dates", datesSchema);

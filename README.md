@@ -4,7 +4,13 @@ Stack: Node, express, RESTfull, MongoDB
 
 ## Getting Started
 
-First, run the development server:
+First, run mongo db server, localy use:
+
+```bash
+brew services start mongodb/brew/mongodb-community@4.4
+```
+
+Then run the development server:
 
 ```bash
 
